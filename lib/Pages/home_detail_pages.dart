@@ -18,11 +18,12 @@ class HomeDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(catalog.name),
+        backgroundColor: Colors.transparent,
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: ButtonBar(
         alignment: MainAxisAlignment.spaceBetween,
-        buttonPadding: EdgeInsets.zero,
+        buttonPadding: EdgeInsets.only(left: 20, right: 20),
         children: [
           "\$${catalog.price}".text.xl.bold.make(),
           Container(
@@ -33,17 +34,20 @@ class HomeDetailPage extends StatelessWidget {
                           backgroundColor:
                               MaterialStateProperty.all(MyTheme.darkBluish)),
                       onPressed: () {},
-                      child: "Buy".text.make())
-                  .wh(100, 40))
+                      child: "Add to cart".text.make())
+                  .wh(120, 40))
         ],
-      ).p24(),
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(children: [
-          Hero(
-                  tag: Key(catalog.id.toString()),
-                  child: Image.network(catalog.image))
-              .p16(),
+          Container(
+            height: 300,
+            child: Hero(
+                    tag: Key(catalog.id.toString()),
+                    child: Image.network(catalog.image))
+                .p12(),
+          ),
           Expanded(
             child: VxArc(
               height: 30.0,
@@ -56,6 +60,11 @@ class HomeDetailPage extends StatelessWidget {
                   catalog.name.text.xl2.bold.color(MyTheme.darkBluish).make(),
                   catalog.desc.text.lg.textStyle(context.captionStyle).make(),
                   10.heightBox,
+                  "Molestias dolorum molestias unde eaque dicta Nihil aut sit Nihil optio corrupti aut Ullam hic numquam qui aut aliquam expedita earum et"
+                      .text
+                      .textStyle(context.captionStyle)
+                      .make()
+                      .p20(),
                 ]).py32(),
               ),
             ),
