@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             Navigator.pushNamed(context, MyRoutes.cartRoute);
           },
-          child: Icon(Icons.trolley),
+          child: Icon(Icons.shopping_cart_outlined),
         ),
         // appBar: AppBar(
         //   title: Text(
