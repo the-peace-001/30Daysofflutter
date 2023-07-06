@@ -1,6 +1,12 @@
 import 'package:flutter_application_1/Models/catalog.dart';
 
 class CartModel {
+  static final cartModel = CartModel._internal();
+
+  CartModel._internal();
+
+  factory CartModel() => cartModel;
+
   //Catalog fields
   late CatalogModel _catalog;
 
@@ -9,7 +15,7 @@ class CartModel {
 
   CatalogModel get catalog => _catalog;
 
-  set Catalog(CatalogModel newCatalog) {
+  set catalog(CatalogModel newCatalog) {
     assert(newCatalog != null);
     _catalog = newCatalog;
   }
