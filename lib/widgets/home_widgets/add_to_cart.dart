@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/cart.dart';
 import 'package:flutter_application_1/Models/catalog.dart';
+import 'package:flutter_application_1/core/store.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -10,10 +11,12 @@ class AddToCart extends StatelessWidget {
     super.key,
     required this.catalog,
   });
-  final _cart = CartModel();
 
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [AddMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    // final CatalogModel _catalog = (VxState.store as MyStore).catalog;
     bool isInCart = _cart.items.contains(catalog) ?? false;
     return ElevatedButton(
         style: ButtonStyle(
@@ -21,10 +24,9 @@ class AddToCart extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(MyTheme.darkBluish)),
         onPressed: () {
           if (!isInCart) {
-            isInCart = isInCart.toggle();
-            final _catalog = CatalogModel();
-            _cart.catalog = _catalog;
-            _cart.add(catalog);
+            // isInCart = isInCart.toggle();
+            // _cart.catalog = _catalog;
+            AddMutation(catalog);
             // setState(() {});
           }
         },
